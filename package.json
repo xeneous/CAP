@@ -1,0 +1,19 @@
+{
+  "name": "DAF349Logali",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "https://github.com/xeneous/CAP.git",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^8.9.4",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.10.0",
+    "@cap-js/sqlite": "^1.11.1"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  }
+}
