@@ -1,7 +1,7 @@
 {
   "name": "DAF349Logali",
   "version": "1.0.0",
-  "description": "A simple CAP project.",
+  "description": "CAP project.",
   "repository": "https://github.com/xeneous/CAP.git",
   "license": "UNLICENSED",
   "private": true,
