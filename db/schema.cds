@@ -1,8 +1,9 @@
 namespace com.daf.logali;
 
+/* Aspectos */ 
 using {
     cuid,
-    managed,
+    managed, 
     sap.common.CodeList
 } from '@sap/cds/common';
 
@@ -83,7 +84,8 @@ entity Status : CodeList {
             InStock         = 'In Stock';
             OutOfStock      = 'Out of Stock';
             LowAvailability = 'Low Availabilit';
-        }
+        };
+        criticality : Integer;
 };
 
 /** Value Helps */

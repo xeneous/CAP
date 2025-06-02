@@ -1,1 +1,4 @@
 ID,supplier,supplierName,webAddress,contact_ID
+SUP001,SUP001,Global Tech Inc.,https://www.globaltech.com,cnt00001-0000-4000-0000-000000000001
+SUP002,SUP002,Fashion Forward,https://www.fashionforward.com,cnt00001-0000-4000-0000-000000000002
+SUP003,SUP003,Bookworm Paradise,https://www.bookwormparadise.com,cnt00001-0000-4000-0000-000000000003
