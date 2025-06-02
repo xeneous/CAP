@@ -19,17 +19,43 @@ annotate serviceCAP.Products with {
         TextArrangement : #TextOnly,
         
     };
-    subCategory @Common: 
+    subCategory @Common:  // Filtro dependiente
     {
         Text: subCategory.subCategory,
         TextArrangement : #TextOnly,
-        
+        ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'VH_SubCategories',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterIn',
+                    LocalDataProperty : category_ID,
+                    ValueListProperty : 'category_ID'
+                },
+                {
+                    $Type : 'Common.ValueListParameterOut',
+                    LocalDataProperty : subCategory_ID,
+                    ValueListProperty : 'ID'
+                }
+            ]
+        },             
     };
     category @Common: 
     {
         Text: category.category,
         TextArrangement : #TextOnly,
-        
+        ValueListWithFixedValues,
+        ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'VH_Categories',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : category_ID,
+                    ValueListProperty : 'ID'
+                }
+            ]
+        },     
     };
     supplier @Common:
     {
@@ -51,25 +77,25 @@ annotate serviceCAP.Products with {
     
 
 annotate serviceCAP.Products with @(
-    Capabilities.FilterRestrictions : {
-        $Type : 'Capabilities.FilterRestrictionsType',
-        FilterExpressionRestrictions : [
-            {
-                $Type  : 'Capabilities.FilterExpressionRestrictionType',
-                AllowedExpressions : 'SearchExpression'
-            }
-        ]
-    },
     UI.HeaderInfo : {
         $Type : 'UI.HeaderInfoType',
         TypeName : 'Product',
-        TypeNamePlural : 'Products'
+        TypeNamePlural : 'Products',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : productName
+        },
+        Description : {
+            $Type : 'UI.DataField',
+            Value : product
+        }
     },
     UI.SelectionFields : [
         product,
         supplier_ID, 
         category_ID, 
-        subCategory_ID
+        subCategory_ID,
+        statu_code
     ],
     UI.LineItem :[
         {
@@ -114,7 +140,81 @@ annotate serviceCAP.Products with @(
         $Type : 'UI.DataPointType',
         Visualization : #Rating, 
         Value : rating
+    },
+    UI.FieldGroup #Header_A : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type   : 'UI.DataField',
+                Value   : supplier_ID
+            },
+            {
+                $Type   : 'UI.DataField',
+                Value   : category_ID
+            },
+            {
+                $Type   : 'UI.DataField',
+                Value   : subCategory_ID
+            }
+        ]
     }
+    ,
+    UI.FieldGroup #ProductDescription : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type   : 'UI.DataField',
+                Value   : description
+            }
+        ]
+    },
+    UI.FieldGroup #ProductStatu : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type   : 'UI.DataField',
+                Value   : statu_code,
+                Criticality : statu.criticality,
+                Label : ''
+                
+            }
+        ]
+    },
+    UI.FieldGroup #Price : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type   : 'UI.DataField',
+                Value   : price,
+                Label   : ''
+            }
+        ]
+    },    
+    UI.HeaderFacets : [
+        {
+                $Type   : 'UI.ReferenceFacet',
+                Target   : '@UI.FieldGroup#Header_A',
+                ID : 'HeaderA'
+        },
+        {
+                $Type   : 'UI.ReferenceFacet',
+                Target   : '@UI.FieldGroup#ProductDescription',
+                ID : 'ProductDescription',
+                Label : 'Product Description'
+        },
+        {
+                $Type   : 'UI.ReferenceFacet',
+                Target   : '@UI.FieldGroup#ProductStatu',
+                ID : 'ProductStatu',
+                Label : 'Availability'
+        },
+        {
+                $Type   : 'UI.ReferenceFacet',
+                Target   : '@UI.FieldGroup#Price',
+                ID : 'Price',
+                Label : 'Price'
+        }       
+    ]
 );
 
 

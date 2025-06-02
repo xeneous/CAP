@@ -1,5 +1,9 @@
 using { CapProject as serviceCAP } from '../service';
 
 annotate serviceCAP.Status with {
-    code @Common : { Text : name, }
+    code @title : 'Statu Name'
+    @Common : { 
+        Text : name, 
+        TextArrangement : #TextOnly,
+        }
 } ;

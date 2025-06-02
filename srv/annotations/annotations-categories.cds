@@ -1,9 +1,9 @@
 using { CapProject as serviceCAP } from '../service';
 
-annotate serviceCAP.Suppliers with {
-    @title : 'Suppliers'
+annotate serviceCAP.VH_Categories with {
+    @title : 'Categories'
     ID @Common : { 
-        Text : supplierName,
+        Text : category,
         TextArrangement : #TextOnly
      }
 } ;
