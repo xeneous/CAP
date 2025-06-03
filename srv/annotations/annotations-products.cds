@@ -3,6 +3,7 @@ using from './annotations-suppliers';
 using from './annotations-productdetails';
 using from './annotations-reviews';
 using from './annotations-inventories';
+using from './annotations-sales';
 
 annotate serviceCAP.Products with {
     product     @title        : 'Product';
@@ -253,6 +254,12 @@ annotate serviceCAP.Products with @(
             Target : 'toInventories/@UI.LineItem',
             Label : 'Product Information',
             ID : 'ProductInformation'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target: 'toSales/@UI.Chart',
+            Label : 'Sales',
+            ID    : 'toSales'
         }
     ]
 );
