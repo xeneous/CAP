@@ -1,0 +1,1 @@
+using {CapProject as service} from '../service';

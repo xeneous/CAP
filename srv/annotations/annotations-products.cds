@@ -2,6 +2,7 @@ using { CapProject as serviceCAP } from '../service';
 using from './annotations-suppliers';
 using from './annotations-productdetails';
 using from './annotations-reviews';
+using from './annotations-inventories';
 
 annotate serviceCAP.Products with {
     product     @title        : 'Product';
@@ -244,6 +245,12 @@ annotate serviceCAP.Products with @(
         {
             $Type : 'UI.ReferenceFacet',
             Target : 'toReviews/@UI.LineItem',
+            Label : 'Product Information',
+            ID : 'ProductInformation'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : 'toInventories/@UI.LineItem',
             Label : 'Product Information',
             ID : 'ProductInformation'
         }
