@@ -1,4 +1,7 @@
 using { CapProject as serviceCAP } from '../service';
+using from './annotations-suppliers';
+using from './annotations-productdetails';
+using from './annotations-reviews';
 
 annotate serviceCAP.Products with {
     product     @title        : 'Product';
@@ -189,7 +192,7 @@ annotate serviceCAP.Products with @(
                 Label   : ''
             }
         ]
-    },    
+    },
     UI.HeaderFacets : [
         {
                 $Type   : 'UI.ReferenceFacet',
@@ -214,6 +217,36 @@ annotate serviceCAP.Products with @(
                 ID : 'Price',
                 Label : 'Price'
         }       
+    ],
+    UI.Facets : [
+        {
+            $Type : 'UI.CollectionFacet', 
+            Facets : [
+                    {
+                            $Type   : 'UI.ReferenceFacet',
+                            Target   : 'supplier/@UI.FieldGroup#SupplierDetails',
+                            Label   : 'Information'
+                    },
+                    {
+                            $Type   : 'UI.ReferenceFacet',
+                            Target   : 'supplier/contact/@UI.FieldGroup#ContactDetails',
+                            Label : 'Contact Person'
+                    }                    
+            ],
+            Label : 'Information Suplliers'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : 'detail/@UI.FieldGroup',
+            Label : 'Product Information',
+            ID : 'ProductInformation'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : 'toReviews/@UI.LineItem',
+            Label : 'Product Information',
+            ID : 'ProductInformation'
+        }
     ]
 );
 
