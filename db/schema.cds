@@ -72,6 +72,7 @@ entity Inventories : cuid {
 };
 
 entity Sales : cuid {
+    monthCode     : String(2);
     month         : String(20);
     year          : String(4);
     quantitySales : Integer;
